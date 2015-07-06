@@ -1,6 +1,6 @@
 cj(function($){
-  var fields=["#first_name","#last_name","#legal_name"];
-  var fieldsAccronym=["#current_employer","#organisation_name","#nick_name"];
+  var fields=["#first_name","#last_name","#legal_name","#middle_name","#nick_name"];
+  var fieldsAccronym=["#current_employer","#organisation_name"];
   function normalise (dom) {
      var v=$(dom).val();
      if (v == v.toLowerCase()) {
