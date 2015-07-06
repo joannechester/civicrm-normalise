@@ -14,8 +14,8 @@ function normalise_civicrm_pre( $op, $objectName, $id, &$params ){
   if (!is_array($params))
     return;  
   if ($objectName == "Profile") {
-    $fields=array("first_name","last_name","legal_name");
-    $fieldsAccronym= array("current_employer","organisation_name","nick_name");
+    $fields=array("first_name","last_name","legal_name","middle_name","nick_name");
+    $fieldsAccronym= array("current_employer","organisation_name");
     foreach ($params as $k => &$v) {
       if (in_array($k,$fields)) {
         if ($v == strtolower($v) || $v == strtoupper($v)) {
