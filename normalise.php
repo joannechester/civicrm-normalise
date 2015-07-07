@@ -12,14 +12,25 @@ function normalise_civicrm_buildForm ( $formName, &$form ){
 
 function normalise_civicrm_pre( $op, $objectName, $id, &$params ){
   if (!is_array($params))
-    return;  
+    return;
   if ($objectName == "Profile") {
-    $fields=array("first_name","last_name","legal_name","middle_name","nick_name");
-    $fieldsAccronym= array("current_employer","organisation_name");
+    $fieldsUpperCaseFirst=array("first_name","last_name","middle_name","nick_name");
+    $fieldsUpperCaseAll= array("city-6","billing_city-5");
+    $fieldsStartCase= array("street_address-6","billing_street_address-5");
     foreach ($params as $k => &$v) {
-      if (in_array($k,$fields)) {
+      if (in_array($k,$fieldsUpperCaseFirst)) {
         if ($v == strtolower($v) || $v == strtoupper($v)) {
-          $v = strtoupper($v[0]) . strtolower(substr($v,1));
+          $v = strtoupper($v);
+        }
+      }
+      if (in_array($k,$fieldsUpperCase)) {
+        $v = strtoupper($v);
+      }
+      if (in_array($k,$fieldsStartCase)) {
+        if ($v == strtolower($v) || $v == strtoupper($v)) {
+          $v = preg_replace_callback('/([0-9])([a-z])/', function($matches){
+               return $matches[1] . strtoupper($matches[2]);
+          }, ucwords(strtolower($v)));
         }
       }
     }
