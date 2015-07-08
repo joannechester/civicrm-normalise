@@ -68,7 +68,8 @@ cj(function($){
     function upperfirst (jad) {
      var v=$(jad).val();
        if (v == v.toLowerCase() || v == v.toUpperCase()) {
-     $(jad).val(v.split(" ").map(function(i){return i[0].toUpperCase() + i.substring(1).toLowerCase()}).join(" ")); 
+     $(jad).val(v.split(" ").map(function(i){return i[0].toUpperCase() + i.substring(1).toLowerCase()})
+     .join(" ").replace(/(\d+)([a-z]+)/, function(a) { return a.toUpperCase(); })); 
        }
      }
 
