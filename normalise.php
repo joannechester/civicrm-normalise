@@ -2,7 +2,6 @@
 
 require_once 'normalise.civix.php';
 
-
 function normalise_civicrm_buildForm ( $formName, &$form ){
   $names = array ("CRM_Profile_Form_Edit","CRM_Contact_Form_Contact","CRM_Event_Form_Registration_Register","CRM_Contribute_Form_Contribution_Main");
   if (in_array($formName,$names)) {
@@ -23,7 +22,7 @@ function normalise_civicrm_pre( $op, $objectName, $id, &$params ){
           $v = strtoupper($v);
         }
       }
-      if (in_array($k,$fieldsUpperCase)) {
+      if (in_array($k,$fieldsUpperCaseAll)) {
         $v = strtoupper($v);
       }
       if (in_array($k,$fieldsStartCase)) {
